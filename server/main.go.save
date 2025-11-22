@@ -1,0 +1,20 @@
+cd ~/pipbingo/frontend
+cat > postcss.config.js << 'EOF'
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+EOF
+cd ~/pipbingo
+
+# Backend
+cd server && go mod download && go build -o pipbingo-server main.go && cd ..
+
+# Client  
+cd client && go mod download && go build -o pipbingo-daemon daemon.go && cd ..
+
+# Frontend
+cd frontend && npm install && cd ..
+
